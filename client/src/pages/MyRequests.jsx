@@ -43,14 +43,14 @@ const MyRequests = () => {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0 h-16 w-16">
-                                            {request.pet.imageUrl ? (
+                                            {request.pet?.imageUrl ? (
                                                 <img className="h-16 w-16 rounded-full object-cover" src={request.pet.imageUrl} alt={request.pet.name} />
                                             ) : (
                                                 <div className="h-16 w-16 rounded-full bg-gray-200 flex items-center justify-center text-xl">🐾</div>
                                             )}
                                         </div>
                                         <div className="ml-4">
-                                            <h3 className="text-lg font-medium text-gray-900">{request.pet.name}</h3>
+                                            <h3 className="text-lg font-medium text-gray-900">{request.pet?.name || 'Unknown Pet'}</h3>
                                             <p className="text-sm text-gray-500">Submitted on {new Date(request.createdAt).toLocaleDateString()}</p>
                                         </div>
                                     </div>

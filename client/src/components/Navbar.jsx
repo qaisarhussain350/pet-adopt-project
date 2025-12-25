@@ -1,17 +1,22 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPaw, FaUserCircle, FaSignOutAlt, FaCrown } from 'react-icons/fa';
+import { FaPaw, FaUserCircle, FaSignOutAlt, FaCrown, FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, defaultUser, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const handleLogout = () => {
         logout();
         navigate('/');
+        setIsMenuOpen(false);
     };
+
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     const currentUser = user || defaultUser;
 
@@ -99,7 +104,68 @@ const Navbar = () => {
                         </div>
                     )}
                 </div>
+                <div className="md:hidden">
+                    <button
+                        onClick={toggleMenu}
+                        className="text-white hover:text-purple-200 focus:outline-none transition-colors"
+                    >
+                        {isMenuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+                    </button>
+                </div>
             </div>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden bg-inherit backdrop-blur-md border-t border-white/20 overflow-hidden"
+                    >
+                        <div className="px-6 py-4 flex flex-col space-y-4">
+                            <MobileNavLink to="/" onClick={toggleMenu}>Home</MobileNavLink>
+                            <MobileNavLink to="/pets" onClick={toggleMenu}>Browse Pets</MobileNavLink>
+
+                            {currentUser ? (
+                                <>
+                                    <MobileNavLink to="/my-requests" onClick={toggleMenu}>My Requests</MobileNavLink>
+                                    {currentUser.isAdmin && (
+                                        <MobileNavLink to="/admin" onClick={toggleMenu}>
+                                            <span className="flex items-center space-x-2 text-yellow-300">
+                                                <FaCrown /> <span>Admin Panel</span>
+                                            </span>
+                                        </MobileNavLink>
+                                    )}
+                                    <div className="pt-4 border-t border-white/10 flex justify-between items-center">
+                                        <div className="flex items-center space-x-2">
+                                            <div className="h-8 w-8 rounded-full bg-purple-500 flex items-center justify-center">
+                                                <span className="font-bold text-white text-xs">{currentUser.name.charAt(0)}</span>
+                                            </div>
+                                            <span className="text-white font-medium">{currentUser.name}</span>
+                                        </div>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="text-red-300 hover:text-red-200 text-sm font-medium"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="pt-4 flex flex-col space-y-3">
+                                    <Link to="/login" onClick={toggleMenu} className="w-full text-center py-2 text-white border border-white/30 rounded-lg hover:bg-white/10">
+                                        Login
+                                    </Link>
+                                    <Link to="/register" onClick={toggleMenu} className="w-full text-center py-2 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700">
+                                        Get Started
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 };
@@ -108,6 +174,16 @@ const NavLink = ({ to, children }) => (
     <Link to={to} className="relative group py-2">
         <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">{children}</span>
         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />
+    </Link>
+);
+
+const MobileNavLink = ({ to, children, onClick }) => (
+    <Link
+        to={to}
+        onClick={onClick}
+        className="block text-white/90 hover:text-white font-medium py-2 hover:pl-2 transition-all"
+    >
+        {children}
     </Link>
 );
 

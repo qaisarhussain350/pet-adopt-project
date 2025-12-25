@@ -59,10 +59,10 @@ const AdminRequests = () => {
                     <tbody className="divide-y divide-gray-100">
                         {requests.map((req) => (
                             <tr key={req._id} className="hover:bg-gray-50 transition-colors">
-                                <td className="px-6 py-4 font-medium text-gray-800">{req.pet?.name || 'Unknown Pet'}</td>
+                                <td className="px-6 py-4 font-medium text-gray-800">{req.pet?.name || <span className="text-red-500 italic">Deleted Pet</span>}</td>
                                 <td className="px-6 py-4">
                                     <div className="text-sm">
-                                        <div className="font-medium text-gray-900">{req.user?.name || 'Unknown User'}</div>
+                                        <div className="font-medium text-gray-900">{req.user?.name || <span className="text-red-500 italic">Deleted User</span>}</div>
                                         <div className="text-gray-500">{req.user?.email}</div>
                                     </div>
                                 </td>
@@ -71,8 +71,8 @@ const AdminRequests = () => {
                                 </td>
                                 <td className="px-6 py-4">
                                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${req.status === 'Approved' ? 'bg-green-100 text-green-700' :
-                                            req.status === 'Rejected' ? 'bg-red-100 text-red-700' :
-                                                'bg-yellow-100 text-yellow-700'
+                                        req.status === 'Rejected' ? 'bg-red-100 text-red-700' :
+                                            'bg-yellow-100 text-yellow-700'
                                         }`}>
                                         {req.status}
                                     </span>

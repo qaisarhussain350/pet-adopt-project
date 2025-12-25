@@ -9,6 +9,7 @@ const PetDetails = () => {
     const [loading, setLoading] = useState(true);
     const [adoptionMessage, setAdoptionMessage] = useState('');
     const [requestStatus, setRequestStatus] = useState(null); // 'success', 'error'
+    const [submitting, setSubmitting] = useState(false);
 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ const PetDetails = () => {
         }
 
         try {
+            setSubmitting(true);
             const config = {
                 headers: {
                     'Authorization': `Bearer ${user.token}`, // Assuming token is in user object
@@ -49,6 +51,8 @@ const PetDetails = () => {
         } catch (error) {
             console.error("Adoption request failed", error);
             setRequestStatus('error');
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -158,9 +162,10 @@ const PetDetails = () => {
 
                                 <button
                                     onClick={handleAdopt}
-                                    className="bg-black text-white font-bold py-4 px-8 rounded-xl hover:bg-gray-800 transition duration-300 w-full shadow-lg transform hover:-translate-y-1"
+                                    disabled={submitting}
+                                    className={`bg-black text-white font-bold py-4 px-8 rounded-xl hover:bg-gray-800 transition duration-300 w-full shadow-lg transform hover:-translate-y-1 ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 >
-                                    {user ? 'Submit Adoption Request' : 'Login to Adopt'}
+                                    {user ? (submitting ? 'Submitting...' : 'Submit Adoption Request') : 'Login to Adopt'}
                                 </button>
                                 {requestStatus === 'error' && (
                                     <p className="text-red-500 mt-4 text-center font-medium">Failed to submit request. Please try again.</p>
