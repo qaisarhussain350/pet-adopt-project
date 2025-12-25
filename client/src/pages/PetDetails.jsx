@@ -143,7 +143,7 @@ const PetDetails = () => {
                                     <div className="mb-6">
                                         <label className="block text-gray-700 text-sm font-bold mb-2">Why do you want to adopt {pet.name}?</label>
                                         <textarea
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition text-gray-900"
                                             rows="3"
                                             value={adoptionMessage}
                                             onChange={(e) => setAdoptionMessage(e.target.value)}
