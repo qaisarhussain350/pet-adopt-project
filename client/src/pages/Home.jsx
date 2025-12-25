@@ -45,9 +45,9 @@ const Home = () => {
         <div className="min-h-screen pt-20 overflow-hidden relative">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-                <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[120px] animate-blob mix-blend-screen" />
-                <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-blob animation-delay-2000 mix-blend-screen" />
-                <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] bg-pink-600/10 rounded-full blur-[120px] animate-blob animation-delay-4000 mix-blend-screen" />
+                <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[80px] animate-blob mix-blend-screen will-change-transform" />
+                <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[80px] animate-blob animation-delay-2000 mix-blend-screen will-change-transform" />
+                <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] bg-pink-600/10 rounded-full blur-[80px] animate-blob animation-delay-4000 mix-blend-screen will-change-transform" />
             </div>
 
             {/* Hero Section */}
@@ -163,7 +163,7 @@ const Home = () => {
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: "-100px" }}
                                 transition={{ delay: index * 0.1 }}
                                 className="text-center group p-6 rounded-2xl hover:bg-gray-800/50 transition-colors"
                             >
@@ -181,7 +181,7 @@ const Home = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-100px" }}
                     className="text-center mb-16"
                 >
                     <span className="text-purple-400 font-semibold tracking-widest uppercase text-sm">How It Works</span>
@@ -195,7 +195,7 @@ const Home = () => {
                             key={index}
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-50px" }}
                             transition={{ delay: index * 0.2 }}
                             className="relative p-8 rounded-3xl bg-gray-800/30 border border-gray-700 hover:border-purple-500/50 transition-colors group"
                         >
@@ -230,7 +230,7 @@ const Home = () => {
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, margin: "-50px" }}
                                 transition={{ delay: i * 0.2 }}
                                 className="bg-gray-800/40 p-8 rounded-3xl border border-gray-700/50 backdrop-blur-sm"
                             >
@@ -254,6 +254,7 @@ const Home = () => {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
                     className="relative rounded-[3rem] overflow-hidden bg-gradient-to-r from-purple-900 to-indigo-900 px-6 py-20 text-center border border-purple-500/30 shadow-2xl"
                 >
                     <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
