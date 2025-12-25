@@ -9,6 +9,7 @@ const PetDetails = () => {
     const [loading, setLoading] = useState(true);
     const [adoptionMessage, setAdoptionMessage] = useState('');
     const [requestStatus, setRequestStatus] = useState(null); // 'success', 'error'
+    const [errorMessage, setErrorMessage] = useState('');
     const [submitting, setSubmitting] = useState(false);
 
     const { user } = useContext(AuthContext);
@@ -46,10 +47,13 @@ const PetDetails = () => {
             // Assuming the ID of the pet is passed in the body or URL
             // Based on adoptionRoutes.js, it expects body content. 
             // Checking adoptionController usage usually implies petId in body.
+            setErrorMessage(''); // Clear previous errors
             await axios.post('/api/adoptions', { petId: pet._id, message: adoptionMessage }, config);
             setRequestStatus('success');
         } catch (error) {
             console.error("Adoption request failed", error);
+            const msg = error.response?.data?.message || 'Failed to submit request. Please try again.';
+            setErrorMessage(msg);
             setRequestStatus('error');
         } finally {
             setSubmitting(false);
@@ -168,7 +172,7 @@ const PetDetails = () => {
                                     {user ? (submitting ? 'Submitting...' : 'Submit Adoption Request') : 'Login to Adopt'}
                                 </button>
                                 {requestStatus === 'error' && (
-                                    <p className="text-red-500 mt-4 text-center font-medium">Failed to submit request. Please try again.</p>
+                                    <p className="text-red-500 mt-4 text-center font-medium">{errorMessage}</p>
                                 )}
                             </>
                         )}
