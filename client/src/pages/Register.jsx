@@ -53,13 +53,13 @@ const Register = () => {
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="name">
+                            <label className="block text-black text-sm font-semibold mb-2" htmlFor="name">
                                 Full Name
                             </label>
                             <input
                                 type="text"
                                 id="name"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-gray-900"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-black"
                                 placeholder="John Doe"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -67,13 +67,13 @@ const Register = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
+                            <label className="block text-black text-sm font-semibold mb-2" htmlFor="email">
                                 Email Address
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-gray-900"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-black"
                                 placeholder="you@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -81,13 +81,13 @@ const Register = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
+                            <label className="block text-black text-sm font-semibold mb-2" htmlFor="password">
                                 Password
                             </label>
                             <input
                                 type="password"
                                 id="password"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-gray-900"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-black"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -95,13 +95,13 @@ const Register = () => {
                             />
                         </div>
                         <div className="mb-8">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="confirmPassword">
+                            <label className="block text-black text-sm font-semibold mb-2" htmlFor="confirmPassword">
                                 Confirm Password
                             </label>
                             <input
                                 type="password"
                                 id="confirmPassword"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-gray-900"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition duration-200 text-black"
                                 placeholder="••••••••"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}

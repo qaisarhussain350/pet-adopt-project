@@ -47,13 +47,13 @@ const Login = () => {
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-6">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
+                            <label className="block text-black text-sm font-semibold mb-2" htmlFor="email">
                                 Email Address
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition duration-200 text-gray-900"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition duration-200 text-black"
                                 placeholder="you@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -61,13 +61,13 @@ const Login = () => {
                             />
                         </div>
                         <div className="mb-8">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
+                            <label className="block text-black text-sm font-semibold mb-2" htmlFor="password">
                                 Password
                             </label>
                             <input
                                 type="password"
                                 id="password"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition duration-200 text-gray-900"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition duration-200 text-black"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
