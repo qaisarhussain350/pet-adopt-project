@@ -1,0 +1,27 @@
+{
+    "name": "pet-adoption-mern",
+    "version": "1.0.0",
+    "description": "Pet Adoption App Deployed on Railway",
+    "main": "server/index.js",
+    "scripts": {
+        "start": "node server/index.js",
+        "server": "nodemon server/index.js",
+        "client": "npm run dev --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "build": "npm install --prefix client && npm run build --prefix client",
+        "postinstall": "npm install --prefix server"
+    },
+    "keywords": [
+        "pet",
+        "adoption",
+        "mern"
+    ],
+    "author": "Antigravity",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.0"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}
