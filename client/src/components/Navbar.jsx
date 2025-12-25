@@ -121,7 +121,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-inherit backdrop-blur-md border-t border-white/20 overflow-hidden"
+                        className="md:hidden bg-black backdrop-blur-md border-t border-white/20 overflow-hidden"
                     >
                         <div className="px-6 py-4 flex flex-col space-y-4">
                             <MobileNavLink to="/" onClick={toggleMenu}>Home</MobileNavLink>
