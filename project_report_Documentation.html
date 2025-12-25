@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption Premium - Project Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #f59e0b;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 5px solid #10b981;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #4b5563;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .header-info {
+            background-color: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .header-info strong {
+            display: inline-block;
+            width: 140px;
+            color: #4b5563;
+        }
+
+        code {
+            background-color: #f3f4f6;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #c026d3;
+        }
+
+        .screenshot-placeholder {
+            background-color: #f9fafb;
+            border: 2px dashed #9ca3af;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            color: #6b7280;
+        }
+
+        .screenshot-placeholder strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        /* Mermaid Diagram Styling */
+        .mermaid {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            h2 {
+                page-break-before: always;
+            }
+
+            h2:first-of-type {
+                page-break-before: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Pet Adoption Premium</h1>
+        <div class="header-info">
+            <div><strong>Project Name:</strong> Pet Adoption Premium</div>
+            <div><strong>Name:</strong> Qaisar Hussain & Aman Idrees</div>
+            <div><strong>Roll No:</strong> 23014119-027 & 23014119-052</div>
+            <div><strong>Date:</strong> December 26, 2025</div>
+        </div>
+    </header>
+
+    <section>
+        <h2>1. Problem Statement</h2>
+
+        <h3>The Challenge</h3>
+        <p>Traditional pet adoption processes are often fragmented, opaque, and inefficient. Potential adopters face
+            several critical hurdles:</p>
+        <ul>
+            <li><strong>Lack of Information:</strong> Incomplete pet profiles without detailed personality traits or
+                history.</li>
+            <li><strong>Complex Procedures:</strong> Paper-based, slow application processes with no visibility into
+                status.</li>
+            <li><strong>Poor User Experience:</strong> Outdated websites that are difficult to navigate on mobile
+                devices.</li>
+            <li><strong>Trust Issues:</strong> Uncertainty about the legitimacy of shelters or the health status of
+                pets.</li>
+        </ul>
+
+        <h3>The Solution</h3>
+        <p><strong>Pet Adoption Premium</strong> is a modern, full-stack web application designed to streamline the
+            adoption journey. It connects ethically raised pets with loving homes through a premium, transparent, and
+            user-friendly digital experience.</p>
+
+        <p><strong>Key Objectives:</strong></p>
+        <ul>
+            <li><strong>Transparency:</strong> Detailed pet profiles including likes, dislikes, and favorite games.</li>
+            <li><strong>Efficiency:</strong> Digital adoption requests with real-time status tracking.</li>
+            <li><strong>Accessibility:</strong> A fully responsive mobile-first design.</li>
+            <li><strong>Administrative Control:</strong> A robust admin dashboard to manage pets, users, and requests
+                efficiently.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. System Architecture & Database Schema</h2>
+        <p>The application is built on the <strong>MERN Stack</strong> (MongoDB, Express.js, React, Node.js).</p>
+
+        <h3>Database Schema Diagram</h3>
+        <p>The following Entity-Relationship Diagram (ERD) represents the MongoDB collections and their relationships.
+        </p>
+
+        <div class="mermaid">
+            erDiagram
+            User ||--o{ AdoptionRequest : makes
+            Pet ||--o{ AdoptionRequest : receives
+
+            User {
+            ObjectId _id PK
+            String name
+            String email
+            String password
+            Boolean isAdmin
+            Date createdAt
+            Date updatedAt
+            }
+
+            Pet {
+            ObjectId _id PK
+            String name
+            String type
+            String breed
+            Number age
+            String description
+            String[] likes
+            String[] dislikes
+            String[] games
+            String imageUrl
+            Number price
+            Boolean isAdopted
+            Date createdAt
+            Date updatedAt
+            }
+
+            AdoptionRequest {
+            ObjectId _id PK
+            ObjectId user FK
+            ObjectId pet FK
+            String message
+            String status "Pending, Approved, Rejected"
+            Date createdAt
+            Date updatedAt
+            }
+        </div>
+
+        <h3>Schema Description</h3>
+        <ol>
+            <li><strong>User Collection:</strong> Stores user credentials and role (Admin/Regular).</li>
+            <li><strong>Pet Collection:</strong> Contains detailed information about adoptable pets, including adoption
+                status (<code>isAdopted</code> flag).</li>
+            <li><strong>AdoptionRequest Collection:</strong> Acts as the link between a User and a Pet, storing the
+                application message and current approval status.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>3. Technology Stack</h2>
+
+        <h3>Frontend</h3>
+        <ul>
+            <li><strong>React.js:</strong> Component-based UI library.</li>
+            <li><strong>Vite:</strong> Next-generation build tool for fast development.</li>
+            <li><strong>Tailwind CSS:</strong> Utility-first CSS framework for rapid, custom styling.</li>
+            <li><strong>Framer Motion:</strong> Library for production-ready animations.</li>
+            <li><strong>Axios:</strong> Promise-based HTTP client for API requests.</li>
+        </ul>
+
+        <h3>Backend</h3>
+        <ul>
+            <li><strong>Node.js:</strong> JavaScript runtime environment.</li>
+            <li><strong>Express.js:</strong> Web application framework for API routing.</li>
+            <li><strong>MongoDB & Mongoose:</strong> NoSQL database and Object Data Modeling (ODM) library.</li>
+            <li><strong>JWT (JSON Web Tokens):</strong> Secure user authentication.</li>
+        </ul>
+
+        <h3>Deployment</h3>
+        <ul>
+            <li><strong>Railway:</strong> Cloud infrastructure for hosting both backend and frontend.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Project Screenshots</h2>
+
+        <h3>4.1 Home Page</h3>
+        <p><em>The landing page features a dynamic, animated hero section that immediately engages users.</em></p>
+        <div class="screenshot-placeholder">
+            <strong><img src="images/home page.PNG" alt="Home Page Screenshot"
+                    style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"></strong>
+
+        </div>
+
+        <h3>4.2 Pet Details Page</h3>
+        <p><em>A comprehensive view of a specific pet, showing personality traits and the adoption form.</em></p>
+        <div class="screenshot-placeholder">
+            <strong><img src="images/Pet detail page.PNG" alt="Pet Details Screenshot"
+                    style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"></strong>
+
+        </div>
+
+        <h3>4.3 Admin Dashboard</h3>
+        <p><em>A protected route for administrators to manage the platform.</em></p>
+        <div class="screenshot-placeholder">
+            <strong><img src="images/Admin dashbaord.PNG" alt="Admin Dashboard Screenshot"
+                    style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"></strong>
+            <small>Overview of total users, pets, and pending requests, with a responsive sidebar.</small>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>5. Conclusion</h2>
+        <p><strong>Pet Adoption Premium</strong> successfully addresses the core problems of traditional adoption by
+            offering a seamless, secure, and visually appealing platform. The project demonstrates the power of the MERN
+            stack in building scalable, real-world applications that solve meaningful problems.</p>
+    </section>
+
+    <!-- Script to render Mermaid Diagrams -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+
+</html>
